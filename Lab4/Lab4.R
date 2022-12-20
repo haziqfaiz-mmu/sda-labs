@@ -1,1 +1,29 @@
 df = read.csv("pulse.csv",header = TRUE)
+
+hist(df$Resting.Pulse.rate..bpm.,col="gold", xlab="Resting pulse", main="Histogram of Resting Pulse")
+F_R = subset(df$Resting.Pulse.rate..bpm.,df$Gender =="F")
+summary(F_R)
+M_R = subset(df$Resting.Pulse.rate..bpm.,df$Gender =="M")
+summary(M_R)
+boxplot(df$Resting.Pulse.rate..bpm. ~ df$Gender, col="cyan", ylab="Resting Pulse",xlab="Gender", main="Boxplot of Resting Pulse by Gender")
+aggregate(df$Resting.Pulse.rate..bpm., list(df$Gender), FUN=mean) 
+aggregate(df$Resting.Pulse.rate..bpm., list(df$Gender), FUN=sd) 
+
+T1 = table(df$Gender, df$Smokes)
+T1
+barplot(table(T1)
+prop.table(T1,1)
+T2=prop.table(T1,2)
+barplot(T2, beside=TRUE)
+
+mosaicplot(T1)
+
+##QUESTION 2##
+df = read.csv("bp.csv")
+qqnorm(df$bmi, col="green")
+qqline(df$bmi, col="red")
+plot(df$systolic ~ df$bmi)
+boxplot(df$bmi ~ df$group)
+plot(df$systolic , df$diastolic)
+cor(df$systolic , df$diastolic)
+cor(df$systolic , df$bmi)
